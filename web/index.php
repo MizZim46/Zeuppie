@@ -3,7 +3,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 const __URL__ = "http://localhost/Zeuppie/";
 
-// On appel la class Application
 $app = new Silex\Application();
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(

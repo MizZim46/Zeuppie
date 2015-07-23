@@ -9,6 +9,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
+$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
+    $twig->addExtension(new Twig_Extensions_Extension_Text($app));
+    return $twig;
+}));
+
+
 define("__SALTCRYPT__", "PezOEdkEx781Zopedl309dSK8sxn89eZ");
 
 // Base de donnée

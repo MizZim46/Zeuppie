@@ -11,7 +11,15 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 define("__SALTCRYPT__", "PezOEdkEx781Zopedl309dSK8sxn89eZ");
 
+session_start();
+
+// Base de donnée
 include "../query/sql.php";
+
+// Controllers
+include "../controllers/indexController.php";
+
+// Formulaire
 include "../form/indexForm.php";
 include "../form/registerForm.php";
 

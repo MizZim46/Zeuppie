@@ -12,6 +12,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 include "../query/sql.php";
 include "../form/indexForm.php";
+include "../form/registerForm.php";
 
 $app['asset_path'] = $app->share(function () {
     return __URL__.'views';

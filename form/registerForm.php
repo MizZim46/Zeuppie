@@ -30,7 +30,7 @@ session_start();
         if ($data['confirmpassword'] == $data['password']) {
 
             $app['db']->insert('utilisateurs', array(
-                  'email' => $data['login'],
+                  'login' => $data['login'],
                   'password' => crypt(htmlspecialchars($data['password']), '$2y$08$'.__SALTCRYPT__.'$'),
                   'status' => '1',
                   'date_inscription' => date('Y-m-d H:i:s')

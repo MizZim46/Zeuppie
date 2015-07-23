@@ -6,7 +6,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
             'host'      => 'localhost',
             'dbname'    => 'zeuppie',
             'user'      => 'root',
-            'password'  => 'zeuppie',
+            'password'  => '',
             'charset'   => 'utf8',
         ),
         'mysql_write' => array(
@@ -14,7 +14,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
             'host'      => 'localhost',
             'dbname'    => 'zeuppie',
             'user'      => 'root',
-            'password'  => 'zeuppie',
+            'password'  => '',
             'charset'   => 'utf8',
         ),
     ),

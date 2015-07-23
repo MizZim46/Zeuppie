@@ -9,6 +9,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
+define("__SALTCRYPT__", "PezOEdk!$781Zopedl309dSK8sxn89$%");
 
 include "../query/sql.php";
 include "../form/indexForm.php";

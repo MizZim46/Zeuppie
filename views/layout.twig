@@ -98,23 +98,23 @@
             <ul class="dropdown-menu animated fadeInRight">            
               <li>
                 <span class="arrow top"></span>
-                <a href="#">Settings</a>
+                <a href="{{ app.index }}parametres">Paramètres</a>
               </li>
               <li>
-                <a href="profile.html">Profile</a>
+                <a href="{{ app.index }}profil">Profil</a>
               </li>
               <li>
-                <a href="#">
-                  <span class="badge bg-danger pull-right">3</span>
+                <a href="{{ app.index }}notifications">
+                  <span class="badge bg-danger pull-right">{{ nbnotifs }}</span>
                   Notifications
                 </a>
               </li>
               <li>
-                <a href="docs.html">Help</a>
+                <a href="{{ app.index }}aide">Aide</a>
               </li>
               <li class="divider"></li>
               <li>
-                <a href="modal.lockme.html" data-toggle="ajaxModal" >Logout</a>
+                <a href="{{ app.index }}deconnexion.php" data-toggle="ajaxModal" >Deconnexion</a>
               </li>
             </ul>
           </li>

@@ -36,7 +36,7 @@ session_start();
                   'date_inscription' => date('Y-m-d H:i:s')
                 ));
 
-            $_SESSION['login'] = $data['email'];
+            $_SESSION['login'] = $data['login'];
             
           return $app->redirect('accueil');
 
@@ -51,7 +51,7 @@ if (!isset($_SESSION['login'])) {
     return $app['twig']->render('inscription.twig', array('form' => $form->createView()));
 }
 else {
-      return $app->redirect('../../accueil');
+      return $app->redirect('accueil');
 }
 
 });

@@ -10,7 +10,7 @@ $app->register(new TranslationServiceProvider());
 
 $app->match('/', function (Request $request) use ($app) {
 
-session_start();
+  session_start();
   
       $form = $app['form.factory']->createBuilder('form')
         ->add('login', 'email', array('attr' => array('placeholder' => 'Email')))
@@ -23,11 +23,12 @@ session_start();
         $data = $form->getData();
 
 
-    include basename('/query/login.php');
+    include '../query/login.php';
 
 
         if ($LoginReponse) {
-          $_SESSION['login'] = $LoginReponse['email'];
+          
+          $_SESSION['login'] = $LoginReponse['login'];
           $Users = $_SESSION['login'];
         }
         else {
@@ -35,10 +36,10 @@ session_start();
         }
 
         if ($erreur != true) {
-          return $app->redirect('index');
+          return $app->redirect('accueil');
         }
         else {
-          return $app->redirect('/');
+          return $app->redirect('register');
         }
     }
 
@@ -46,6 +47,6 @@ if (!isset($_SESSION['login'])) {
     return $app['twig']->render('login.twig', array('form' => $form->createView()));
 }
 else {
-      return $app->redirect('index');
+      return $app->redirect('accueil');
 }
 });

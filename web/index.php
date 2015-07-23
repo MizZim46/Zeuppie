@@ -11,8 +11,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 define("__SALTCRYPT__", "PezOEdkEx781Zopedl309dSK8sxn89eZ");
 
-session_start();
-
 // Base de donnée
 include "../query/sql.php";
 
@@ -30,6 +28,7 @@ $app['asset_path'] = $app->share(function () {
 $app['index'] = $app->share(function () {
     return __URL__.'web/index.php/';
 });
+
 
 $app['debug'] = true;
 $app->run();

@@ -47,7 +47,7 @@
             <span class="input-group-btn">
               <button type="submit" class="btn btn-sm bg-white btn-icon rounded"><i class="fa fa-search"></i></button>
             </span>
-            <input type="text" class="form-control input-sm no-border rounded" placeholder="Search songs, albums...">
+            <input type="text" class="form-control input-sm no-border rounded" placeholder="Rechercher documents,vidéos,articles ...">
           </div>
         </div>
       </form>
@@ -138,9 +138,9 @@
                       Discover
                     </li>
                     <li>
-                      <a href="index.html">
+                      <a href="{{ app.index }}accueil">
                         <i class="icon-disc icon text-success"></i>
-                        <span class="font-bold">What's new</span>
+                        <span class="font-bold">Quoi de neuf</span>
                       </a>
                     </li>
                     <li>
@@ -164,7 +164,8 @@
         {% block body %}
         {% endblock %}
 
-        
+      </section>    
+  </section>      
   <script src="{{ app.asset_path }}/js/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="{{ app.asset_path }}/js/bootstrap.js"></script>

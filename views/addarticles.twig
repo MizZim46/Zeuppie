@@ -1,0 +1,65 @@
+{% extends layout %}
+
+
+{% block body %}
+        <section id="content">
+          <section class="vbox">
+            <section class="scrollable wrapper-lg">
+              <div class="row">
+
+        <FORM name="form" method="post">
+                    {{ form_errors(form) }}
+                              <div class="form-group">
+                                <SELECT name="categories" class="form-control">
+                                  {% for cat in categories %}
+                                    <OPTION value="{{ cat.id_categories }}">{{ cat.nom_categories }}</OPTION>
+                                  {% endfor %}
+                                </SELECT>
+                              </div>
+                              <div class="form-group">
+                                {{ form_errors(form.titre) }}
+                                {{ form_widget(form.titre, {'attr': {'class': 'form-control'}}) }}
+                              </div>
+                              <div class="form-group">
+                                <TEXTAREA cols="80" id="editor1" name="editor1" rows="10"></TEXTAREA>
+                                <script>
+                                  // Replace the <textarea id="editor1"> with an CKEditor
+                                  // instance, using the "bbcode" plugin, customizing some of the
+                                  // editor configuration options to fit BBCode environment.
+                                  CKEDITOR.replace( 'editor1', {
+                                    height: 280,
+                                    // Add plugins providing functionality popular in BBCode environment.
+                                    extraPlugins: 'bbcode,smiley,font,colorbutton',
+                                    // Remove unused plugins.
+                                    removePlugins: 'filebrowser,format,horizontalrule,pastetext,pastefromword,scayt,showborders,stylescombo,table,tabletools,wsc',
+                                    // Remove unused buttons.
+                                    removeButtons: 'Anchor,BGColor,Font,Strike,Subscript,Superscript',
+                                    // Width and height are not supported in the BBCode format, so object resizing is disabled.
+                                    disableObjectResizing: true,
+                                    // Define font sizes in percent values.
+                                    fontSize_sizes: "30/30%;50/50%;100/100%;120/120%;150/150%;200/200%;300/300%",
+                                    // Strip CKEditor smileys to those commonly used in BBCode.
+                                    smiley_images: [
+                                      'regular_smile.png', 'sad_smile.png', 'wink_smile.png', 'teeth_smile.png', 'tongue_smile.png',
+                                      'embarrassed_smile.png', 'omg_smile.png', 'whatchutalkingabout_smile.png', 'angel_smile.png',
+                                      'shades_smile.png', 'cry_smile.png', 'kiss.png'
+                                    ],
+                                    smiley_descriptions: [
+                                      'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+                                      'indecision', 'angel', 'cool', 'crying', 'kiss'
+                                    ]
+                                  });
+                                </script>
+                              </div>
+
+                            <input type="submit" class="btn btn-primary" value="Ajouter un article">
+                            {{ form_end(form) }}
+
+                            </div>
+
+          </section>
+          <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open" data-target="#nav,html"></a>
+        </section>
+      </section>
+
+{% endblock %}

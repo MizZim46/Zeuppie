@@ -26,6 +26,7 @@ include "../controllers/indexController.php";
 // Formulaire
 include "../form/indexForm.php";
 include "../form/registerForm.php";
+include "../form/articleForm.php";
 
 $app['asset_path'] = $app->share(function () {
     return __URL__.'views';

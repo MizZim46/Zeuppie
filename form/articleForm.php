@@ -26,10 +26,11 @@ include '../query/categories.php';
         $data = $form->getData();
 
         $contenuRegex = preg_replace("/<script(.*?)<\/script>/si", "", $_POST['contenu']);
-        $contenuRegex = preg_replace("/onlick=javascript(.*?)<\/a>/si", "", $_POST['contenu']);
-        $contenuRegex = preg_replace("/onload(.*?)<\/a>/si", "", $_POST['contenu']);
-        $contenuRegex = preg_replace("/onmousehover(.*?)<\/a>/si", "", $_POST['contenu']);
-        $contenuRegex = preg_replace("/href=javascript(.*?)<\/a>/si", "", $_POST['contenu']);
+        $contenuRegex = preg_replace("/onclick(.*?)<\/a>/si", "", $contenuRegex);
+        $contenuRegex = preg_replace("/onload(.*?)<\/a>/si", "", $contenuRegex);
+        $contenuRegex = preg_replace("/onmousehover(.*?)<\/a>/si", "", $contenuRegex);
+        $contenuRegex = preg_replace("/<a href=javascript(.*?)<\/a>/si", "", $contenuRegex);
+        $contenuRegex = preg_replace("/<a href=\"javascript(.*?)<\/a>/si", "", $contenuRegex);
 
             $app['db']->insert('articles', array(
                   'id_utilisateurs' => $utilisateursReponse['id_utilisateurs'],

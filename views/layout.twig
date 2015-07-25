@@ -144,6 +144,14 @@
                         <span class="font-bold">Quoi de neuf</span>
                       </a>
                     </li>
+                    {% for catmenu in categories %}
+                    <li>
+                      <a href="{{ app.index }}categories/{{ catmenu.id_categories }}">
+                        <i class="icon-folder icon text-primary"></i>
+                        <span>{{ catmenu.nom_categories }}</span>
+                      </a>
+                    </li>
+                    {% endfor %}
                     <li>
                     <li class="m-b hidden-nav-xs"></li>
                   </ul>
@@ -153,6 +161,7 @@
                     </li>
                     <li>
                       <a href="{{ app.index }}ajouter/articles">
+                        <i class="icon-plus"></i>
                         <span class="font-bold">Créer un article</span>
                       </a>
                     </li>

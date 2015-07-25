@@ -16,6 +16,7 @@ session_start();
         ->add('login', 'email', array('attr' => array('placeholder' => 'Email')))
         ->add('password', 'password', array('attr' => array('placeholder' => 'Mot de passe')))
         ->add('confirmpassword', 'password', array('attr' => array('placeholder' => 'Confirmer mot de passe')))
+        ->add('pseudo', 'text', array('attr' => array('placeholder' => 'Pseudo')))
         ->getForm();
 
     $form->handleRequest($request);
@@ -30,8 +31,9 @@ session_start();
         if ($data['confirmpassword'] == $data['password']) {
 
             $app['db']->insert('utilisateurs', array(
-                  'login' => $data['login'],
+                  'login' => htmlspecialchars(addslashes($data['login'])),
                   'password' => crypt(htmlspecialchars($data['password']), '$2y$08$'.__SALTCRYPT__.'$'),
+                  'pseudo' => htmlspecialchars(addslashes($data['pseudo'])),
                   'status' => '1',
                   'date_inscription' => date('Y-m-d H:i:s')
                 ));

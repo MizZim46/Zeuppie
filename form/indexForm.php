@@ -13,7 +13,7 @@ $app->match('/', function (Request $request) use ($app) {
   session_start();
   
       $form = $app['form.factory']->createBuilder('form')
-        ->add('login', 'email', array('attr' => array('placeholder' => 'Email')))
+        ->add('login', 'email', array('attr' => array('placeholder' => 'Email OU Pseudo')))
         ->add('password', 'password', array('attr' => array('placeholder' => 'Mot de passe')))
         ->getForm();
 

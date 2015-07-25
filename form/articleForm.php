@@ -27,9 +27,9 @@ include '../query/categories.php';
 
             $app['db']->insert('articles', array(
                   'id_utilisateurs' => $utilisateursReponse['id_utilisateurs'],
-                  'id_categories' => htmlspecialchars(addslashes($data['categories'])),
+                  'id_categories' => htmlspecialchars(addslashes($_POST['categories'])),
                   'titre' => htmlspecialchars(addslashes($data['titre'])),
-                  'contenu' => htmlspecialchars(addslashes($data['contenu'])),
+                  'contenu' => htmlspecialchars(addslashes($_POST['contenu'])),
                   'status' => '1',
                   'date_articles' => date('Y-m-d H:i:s')
                 ));

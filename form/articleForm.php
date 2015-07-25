@@ -25,11 +25,19 @@ include '../query/categories.php';
     if ($form->isValid()) {
         $data = $form->getData();
 
+        $contenuRegex = preg_replace('@<script[^>]*?>.*?</script>@si', '', $_POST['contenu']);
+        $contenuRegex = preg_replace('@onclick[^>]*?>.*?</a>@si', '', $_POST['contenu']);
+        $contenuRegex = preg_replace('@onload[^>]*?>.*?</a>@si', '', $_POST['contenu']);
+        $contenuRegex = preg_replace('@onmousehover[^>]*?>.*?</div>@si', '', $_POST['contenu']);
+        $contenuRegex = preg_replace('@onclick[^>]*?>.*?</div>@si', '', $_POST['contenu']);
+        $contenuRegex = preg_replace('@onload[^>]*?>.*?</div>@si', '', $_POST['contenu']);
+        $contenuRegex = preg_replace('@onmousehover[^>]*?>.*?</div>@si', '', $_POST['contenu']);
+
             $app['db']->insert('articles', array(
                   'id_utilisateurs' => $utilisateursReponse['id_utilisateurs'],
                   'id_categories' => htmlspecialchars(addslashes($_POST['categories'])),
                   'titre' => htmlspecialchars(addslashes($data['titre'])),
-                  'contenu' => htmlspecialchars(addslashes($_POST['contenu'])),
+                  'contenu' => addslashes($contenuRegex),
                   'status' => '1',
                   'date_articles' => date('Y-m-d H:i:s')
                 ));

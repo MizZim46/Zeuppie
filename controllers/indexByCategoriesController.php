@@ -1,6 +1,13 @@
 <?php
 $app->get('/categories/{idcat}', function ($idcat) use ($app) {
 
+$idcat = str_replace("'", "", $idcat);
+
+
+    if (empty($idcat)) {
+        return $app->redirect('../accueil');
+    }
+
 session_start();
 
 include '../query/utilisateurs.php';

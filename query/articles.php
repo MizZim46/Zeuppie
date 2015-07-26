@@ -18,7 +18,7 @@ if (!empty($idcat)) {
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories
 			WHERE a.status = 1
-			AND a.id_categories = ".$idcat;
+			AND a.id_categories = ".htmlspecialchars(addslashes($idcat));
 
     $ArticlesByCatReponse = $app['db']->fetchAll($ArticlesByCat);
 
@@ -33,7 +33,7 @@ if (!empty($idart)) {
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories
 			WHERE a.status = 1
-			AND a.id_articles = ".$idart;
+			AND a.id_articles = ".htmlspecialchars(addslashes($idart));
 
     $ArticlesReponse = $app['db']->fetchAssoc($Articles);
 

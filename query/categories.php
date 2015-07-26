@@ -8,7 +8,7 @@
 
     $CategoriesById = "SELECT *
 			FROM categories
-			WHERE id_categories = ".$idcat;
+			WHERE id_categories = ".htmlspecialchars(addslashes($idcat));
 
     $CategoriesByIdReponse = $app['db']->fetchAssoc($CategoriesById);
 

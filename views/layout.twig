@@ -66,7 +66,7 @@
                 </div>
                 <div class="list-group list-group-alt">
                   {% for notifs in notifications %}
-                  {% if notifs == false %}
+                  {% if notifs == true %}
                   <a href="#" class="media list-group-item">
                     <span class="media-body block m-b-none">
                       {{ notifs.message }}<br>

@@ -2977,6 +2977,7 @@ a.bg-light:focus {
 }
 .wrapper-lg {
   padding: 30px;
+  word-break: break-all;
 }
 .wrapper-xl {
   padding: 50px;

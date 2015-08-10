@@ -16,7 +16,7 @@
                                       <h2 class="post-title"><a href="{{ app.index }}categories/{{ art.id_categories }}/articles/{{ art.id_articles }}">{{ art.titre|title }}</a></h2>
                                       <div class="post-sum">
                                         <p>
-                                          {{ art.contenu|truncate(250, true, '...')|raw }}
+                                          {{ art.contenu|truncate(100)|raw }}
                                         </p>
                                       </div>
                                       <div class="line line-lg"></div>

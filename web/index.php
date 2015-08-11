@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__.'/../vendor/autoload.php';
 
-const __URL__ = "http://localhost/Zeuppie/";
+const __URL__ = "http://localhost:9080/Zeuppie/";
 
 $app = new Silex\Application();
 

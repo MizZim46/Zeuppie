@@ -39,7 +39,7 @@ $app->match('/', function (Request $request) use ($app) {
           return $app->redirect('accueil');
         }
         else {
-          return $app->redirect('register');
+          return $app->redirect('inscription');
         }
     }
 

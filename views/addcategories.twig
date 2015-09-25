@@ -1,0 +1,27 @@
+{% extends layout %}
+
+
+{% block body %}
+        <section id="content">
+          <section class="vbox">
+            <section class="scrollable wrapper-lg">
+            <h2 class="font-thin m-b">Ajouter une catégorie</h2>
+              <div class="row">
+
+        <FORM name="form" method="post">
+                    {{ form_errors(form) }}
+                              <div class="form-group">
+                                {{ form_errors(form.nom) }}
+                                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                              </div>
+
+                            <input type="submit" class="btn btn-primary" value="Ajouter une catégorie">
+                            {{ form_end(form) }}
+
+                            </div>
+
+          </section>
+        </section>
+      </section>
+
+{% endblock %}

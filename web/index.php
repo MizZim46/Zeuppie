@@ -30,6 +30,7 @@ include "../controllers/profilController.php";
 include "../form/indexForm.php";
 include "../form/registerForm.php";
 include "../form/articleForm.php";
+include "../form/categorieForm.php";
 
 $app['asset_path'] = $app->share(function () {
     return __URL__.'views';

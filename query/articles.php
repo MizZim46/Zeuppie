@@ -38,3 +38,29 @@ if (!empty($idart)) {
     $ArticlesReponse = $app['db']->fetchAssoc($Articles);
 
 }
+
+
+if (!empty($idProfil)) {
+    $Articles = "SELECT *
+			FROM articles AS a
+			LEFT JOIN utilisateurs AS u 
+			ON a.id_utilisateurs = u.id_utilisateurs
+			LEFT JOIN categories AS c
+			ON a.id_categories = c.id_categories
+			WHERE a.status = 1
+			AND u.id_utilisateurs = ".$idProfil;
+
+    $ArticlesActivityReponse = $app['db']->fetchAll($Articles);
+}
+else {
+    $Articles = "SELECT *
+			FROM articles AS a
+			LEFT JOIN utilisateurs AS u 
+			ON a.id_utilisateurs = u.id_utilisateurs
+			LEFT JOIN categories AS c
+			ON a.id_categories = c.id_categories
+			WHERE a.status = 1
+			AND u.id_utilisateurs = ".$utilisateursReponse['id_utilisateurs'];
+
+    $ArticlesActivityReponse = $app['db']->fetchAll($Articles);
+}

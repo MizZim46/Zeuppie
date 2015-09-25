@@ -24,6 +24,7 @@ include "../query/sql.php";
 include "../controllers/indexController.php";
 include "../controllers/indexByCategoriesController.php";
 include "../controllers/articlesViewController.php";
+include "../controllers/profilController.php";
 
 // Formulaire
 include "../form/indexForm.php";

@@ -46,6 +46,15 @@ if (!empty($idart)) {
 			GROUP BY a.id_articles";
 
     $ArticlesReponse = $app['db']->fetchAssoc($Articles);
+
+        $Commentaires = "SELECT *
+			FROM commentaires AS c
+			INNER JOIN utilisateurs AS u 
+			ON c.id_utilisateurs_commentaires = u.id_utilisateurs
+			WHERE c.active_commentaires = 1
+			AND c.id_articles_commentaires = ".htmlspecialchars(addslashes($idart));
+
+    $CommentairesReponse = $app['db']->fetchAll($Commentaires);
 }
 
 

@@ -19,7 +19,7 @@ if (isset($_SESSION['login'])) {
 
 $layout = $app['twig']->loadTemplate('layout.twig');
 
-    return $app['twig']->render('articlesView.twig', array('users' => $_SESSION['login'], 'infousers' => $utilisateursReponse, 'nbnotifs' => $NbNotificationsReponse['nbNotifs'], 'notifications' => $NotificationsReponse, 'articles' => $ArticlesReponse, 'categories' => $CategoriesReponse, 'categoriesbyid' => $CategoriesByIdReponse, 'layout' => $layout));
+    return $app['twig']->render('articlesView.twig', array('users' => $_SESSION['login'], 'commentaires' => $CommentairesReponse, 'infousers' => $utilisateursReponse, 'nbnotifs' => $NbNotificationsReponse['nbNotifs'], 'notifications' => $NotificationsReponse, 'articles' => $ArticlesReponse, 'categories' => $CategoriesReponse, 'categoriesbyid' => $CategoriesByIdReponse, 'layout' => $layout));
 }
 else {
   return $app->redirect('inscription');

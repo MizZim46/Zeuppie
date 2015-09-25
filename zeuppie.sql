@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mar 11 Août 2015 à 23:21
+-- Généré le :  Ven 25 Septembre 2015 à 02:53
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -77,6 +77,21 @@ INSERT INTO `categories` (`id_categories`, `nom_categories`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `commentaires`
+--
+
+CREATE TABLE IF NOT EXISTS `commentaires` (
+  `id_commentaires` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateurs_commentaires` int(11) NOT NULL,
+  `message_commentaires` longtext NOT NULL,
+  `date_commentaires` datetime NOT NULL,
+  `active_commentaires` int(11) NOT NULL,
+  PRIMARY KEY (`id_commentaires`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `notifications`
 --
 
@@ -94,6 +109,34 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 
 INSERT INTO `notifications` (`id_notifications`, `id_utilisateurs`, `message`, `date_notifications`) VALUES
 (1, 4, 'Bienvenue sur Zeuppie !', '2015-07-15 09:31:31');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `profil_utilisateurs`
+--
+
+CREATE TABLE IF NOT EXISTS `profil_utilisateurs` (
+  `id_profil_utilisateurs` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateurs` int(11) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `age` varchar(255) NOT NULL,
+  `pays` varchar(255) NOT NULL,
+  `interet` varchar(255) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `twitter` varchar(255) NOT NULL,
+  `facebook` varchar(255) NOT NULL,
+  `google` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_profil_utilisateurs`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `profil_utilisateurs`
+--
+
+INSERT INTO `profil_utilisateurs` (`id_profil_utilisateurs`, `id_utilisateurs`, `prenom`, `nom`, `age`, `pays`, `interet`, `description`, `twitter`, `facebook`, `google`) VALUES
+(1, 4, 'Kevin', 'Lacroix', '45', 'France', 'informatique,science,developpement,sport', 'J''aime le sport et l''informatique ainsi que les sciences, je suis un passionné, bla bla bla', 'bigou', 'bigou.eifo', '4545455784512');
 
 -- --------------------------------------------------------
 
@@ -116,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id_utilisateurs`, `login`, `password`, `pseudo`, `status`, `date_inscription`) VALUES
-(4, 'zim@zim.com', '$2y$08$PezOEdkEx781Zopedl309Oc3XuVOOTf7U51/Vw4rvBfnZmrCI9n.6', 'Zim', 1, '2015-07-23 14:00:43');
+(4, 'zim@zim.com', '*****', 'Zim', 1, '2015-07-23 14:00:43');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

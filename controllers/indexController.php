@@ -11,6 +11,7 @@ if (isset($_SESSION['login'])) {
 
 $layout = $app['twig']->loadTemplate('layout.twig');
 
+
     return $app['twig']->render('index.twig', array('users' => $_SESSION['login'], 'infousers' => $utilisateursReponse, 'nbnotifs' => $NbNotificationsReponse['nbNotifs'], 'notifications' => $NotificationsReponse, 'articles' => $ArticlesReponse, 'categories' => $CategoriesReponse, 'layout' => $layout));
 }
 else {

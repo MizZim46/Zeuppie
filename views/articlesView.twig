@@ -23,7 +23,7 @@
                                         <i class="fa fa-user icon-muted"></i> by <a href="{{ app.index }}profil/{{ articles.id_utilisateurs }}" class="m-r-sm">{{ articles.pseudo }}</a>
                                         <i class="fa fa-folder-open icon-muted"></i> <a href="{{ app.index }}categories/{{ articles.id_categories }}" class="m-r-sm">{{ articles.nom_categories }}</a>
                                         <i class="fa fa-clock-o icon-muted"></i> {{ articles.date_articles }}
-                                        <a href="{{ app.index }}categories/{{ articles.id_categories }}/articles/{{ articles.id_articles }}#comments" class="m-l-sm"><i class="fa fa-comment-o icon-muted"></i> 4 comments</a>
+                                        <a href="{{ app.index }}categories/{{ articles.id_categories }}/articles/{{ articles.id_articles }}#comments" class="m-l-sm"><i class="fa fa-comment-o icon-muted"></i> {% if articles.nbCommentaires %}{{ articles.nbCommentaires }} commentaire{% if articles.nbCommentaires > 1 %}s{% endif %} {% else %} 0 commentaire{% endif %}</a>
                                       </div>
                                     </div>
                                   </div>

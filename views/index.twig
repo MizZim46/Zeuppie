@@ -13,7 +13,7 @@
                                 <div class="blog-post">
                                   <div class="post-item">
                                     <div class="caption wrapper-lg">
-                                      <h2 class="post-title"><a href="{{ app.index }}categories/{{ art.id_categories }}/articles/{{ art.id_articles }}">{{ art.titre|title }}</a></h2>
+                                      <h2 class="post-title"><a href="{{ app.index }}categories/{{ art.id_categories }}/articles/{{ art.id_articles }}">{{ art.titre|title }}</a>{% if art.id_utilisateurs == infousers.id_utilisateurs %}<a href="" style="font-size: 10px;" class="label bg-info m-l-xs">Editer</a>{% endif %}</h2>
                                       <div class="post-sum">
                                         <p>
                                           {{ art.contenu|truncate(100)|raw }}

@@ -1,14 +1,15 @@
 <?php
     $Articles = "SELECT *, COUNT(id_commentaires) AS nbCommentaires
 			FROM articles AS a
-			LEFT JOIN utilisateurs AS u 
+			INNER JOIN utilisateurs AS u 
 			ON a.id_utilisateurs = u.id_utilisateurs
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories
 			LEFT JOIN commentaires AS co 
 			ON a.id_articles = co.id_articles_commentaires
 			WHERE a.status = 1
-			GROUP BY a.id_articles";
+			GROUP BY a.id_articles
+			ORDER BY a.id_articles DESC";
 
     $ArticlesReponse = $app['db']->fetchAll($Articles);
 
@@ -17,7 +18,7 @@ if (!empty($idcat)) {
 
         $ArticlesByCat = "SELECT *, COUNT(id_commentaires) AS nbCommentaires
 			FROM articles AS a
-			LEFT JOIN utilisateurs AS u 
+			INNER JOIN utilisateurs AS u 
 			ON a.id_utilisateurs = u.id_utilisateurs
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories
@@ -25,7 +26,8 @@ if (!empty($idcat)) {
 			ON a.id_articles = co.id_articles_commentaires
 			WHERE a.status = 1
 			AND a.id_categories = ".htmlspecialchars(addslashes($idcat))."
-			GROUP BY a.id_articles";
+			GROUP BY a.id_articles
+			ORDER BY a.id_articles DESC";
 
     $ArticlesByCatReponse = $app['db']->fetchAll($ArticlesByCat);
 
@@ -35,7 +37,7 @@ if (!empty($idart)) {
 
         $Articles = "SELECT *, COUNT(id_commentaires) AS nbCommentaires
 			FROM articles AS a
-			LEFT JOIN utilisateurs AS u 
+			INNER JOIN utilisateurs AS u 
 			ON a.id_utilisateurs = u.id_utilisateurs
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories
@@ -43,7 +45,8 @@ if (!empty($idart)) {
 			ON a.id_articles = co.id_articles_commentaires
 			WHERE a.status = 1
 			AND a.id_articles = ".htmlspecialchars(addslashes($idart))."
-			GROUP BY a.id_articles";
+			GROUP BY a.id_articles
+			ORDER BY a.id_articles DESC";
 
     $ArticlesReponse = $app['db']->fetchAssoc($Articles);
 
@@ -61,7 +64,7 @@ if (!empty($idart)) {
 if (!empty($idProfil)) {
     $Articles = "SELECT *
 			FROM articles AS a
-			LEFT JOIN utilisateurs AS u 
+			INNER JOIN utilisateurs AS u 
 			ON a.id_utilisateurs = u.id_utilisateurs
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories
@@ -73,7 +76,7 @@ if (!empty($idProfil)) {
 else {
     $Articles = "SELECT *
 			FROM articles AS a
-			LEFT JOIN utilisateurs AS u 
+			INNER JOIN utilisateurs AS u 
 			ON a.id_utilisateurs = u.id_utilisateurs
 			LEFT JOIN categories AS c
 			ON a.id_categories = c.id_categories

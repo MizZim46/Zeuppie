@@ -1,0 +1,42 @@
+{% extends layout %}
+
+
+{% block body %}
+        <section id="content">
+          <section class="vbox">
+            <section class="scrollable wrapper-lg">
+              <div class="row">
+
+                {% for art in articles %}
+
+                              <div class="col-sm-4">
+                                <div class="blog-post">
+                                  <div class="post-item">
+                                    <div class="caption wrapper-lg">
+                                      <h2 class="post-title"><a href="{{ app.index }}article/{{ art.id }}">{{ art.title|title }}</a>{% if art.iduser == infousers.id %}<a href="" style="font-size: 10px;" class="label bg-info m-l-xs">Editer</a>{% endif %}</h2>
+                                      <div class="post-sum">
+                                        <p>
+                                          {{ art.content|truncate(100)|raw }}
+                                        </p>
+                                      </div>
+                                      <div class="line line-lg"></div>
+                                      <div class="text-muted">
+                                        <i class="fa fa-user icon-muted"></i> by <a href="{{ app.index }}profil/{{ art.iduser }}" class="m-r-sm">{{ art.pseudo }}</a>
+                                        <i class="fa fa-folder-open icon-muted"></i> <a href="{{ app.index }}categorie/{{ art.idcategory }}" class="m-r-sm">{{ art.namecategory }}</a>
+                                        <i class="fa fa-clock-o icon-muted"></i> {{ art.date }}
+                                        <a href="{{ app.index }}article/{{ art.id }}#comments" class="m-l-sm"><i class="fa fa-comment-o icon-muted"></i> {% if art.nbcomments %}{{ art.nbcomments }} commentaire{% if art.nbcomments > 1 %}s{% endif %} {% else %} 0 commentaire{% endif %}</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                {% endfor %}
+
+                            </div>
+
+          </section>
+        </section>
+      </section>
+
+{% endblock %}

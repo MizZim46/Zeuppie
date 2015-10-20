@@ -88,7 +88,7 @@ class PropertyAccessor implements PropertyAccessorInterface
                 $this->writeProperty($objectOrArray, $property, $value);
             }
 
-            if ($propertyValues[$i][self::IS_REF]) {
+            if ($propertyValues[$i][self::IS_REF] && is_object($objectOrArray)) {
                 return;
             }
 
@@ -149,7 +149,7 @@ class PropertyAccessor implements PropertyAccessorInterface
                     }
                 }
 
-                if ($propertyValues[$i][self::IS_REF]) {
+                if ($propertyValues[$i][self::IS_REF] && is_object($objectOrArray)) {
                     return true;
                 }
             }
@@ -229,7 +229,7 @@ class PropertyAccessor implements PropertyAccessorInterface
 
             // the final value of the path must not be validated
             if ($i + 1 < $propertyPath->getLength() && !is_object($objectOrArray) && !is_array($objectOrArray)) {
-                throw new UnexpectedTypeException($objectOrArray, $propertyPath, $i+1);
+                throw new UnexpectedTypeException($objectOrArray, $propertyPath, $i + 1);
             }
 
             $propertyValues[] = &$propertyValue;

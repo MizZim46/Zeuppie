@@ -43,8 +43,12 @@ class DefaultChoiceListFactory implements ChoiceListFactoryInterface
      * @deprecated Added for backwards compatibility in Symfony 2.7, to be
      *             removed in Symfony 3.0.
      */
-    public function createListFromFlippedChoices($choices, $value = null)
+    public function createListFromFlippedChoices($choices, $value = null, $triggerDeprecationNotice = true)
     {
+        if ($triggerDeprecationNotice) {
+            @trigger_error('The '.__METHOD__.' is deprecated since version 2.7 and will be removed in 3.0.', E_USER_DEPRECATED);
+        }
+
         return new ArrayKeyChoiceList($choices, $value);
     }
 
@@ -64,16 +68,18 @@ class DefaultChoiceListFactory implements ChoiceListFactoryInterface
         // Backwards compatibility
         if ($list instanceof LegacyChoiceListAdapter && empty($preferredChoices)
             && null === $label && null === $index && null === $groupBy && null === $attr) {
-            $mapToNonLegacyChoiceView = function (LegacyChoiceView $choiceView) {
-                return new ChoiceView($choiceView->data, $choiceView->value, $choiceView->label);
+            $mapToNonLegacyChoiceView = function (LegacyChoiceView &$choiceView) {
+                $choiceView = new ChoiceView($choiceView->data, $choiceView->value, $choiceView->label);
             };
 
             $adaptedList = $list->getAdaptedList();
 
-            return new ChoiceListView(
-                array_map($mapToNonLegacyChoiceView, $adaptedList->getRemainingViews()),
-                array_map($mapToNonLegacyChoiceView, $adaptedList->getPreferredViews())
-            );
+            $remainingViews = $adaptedList->getRemainingViews();
+            $preferredViews = $adaptedList->getPreferredViews();
+            array_walk_recursive($remainingViews, $mapToNonLegacyChoiceView);
+            array_walk_recursive($preferredViews, $mapToNonLegacyChoiceView);
+
+            return new ChoiceListView($remainingViews, $preferredViews);
         }
 
         $preferredViews = array();
@@ -170,6 +176,10 @@ class DefaultChoiceListFactory implements ChoiceListFactoryInterface
     private static function addChoiceViewsGroupedBy($groupBy, $label, $choices, $keys, &$index, $attr, $isPreferred, &$preferredViews, &$otherViews)
     {
         foreach ($groupBy as $key => $value) {
+            if (null === $value) {
+                continue;
+            }
+
             // Add the contents of groups to new ChoiceGroupView instances
             if (is_array($value)) {
                 $preferredViewsForGroup = array();

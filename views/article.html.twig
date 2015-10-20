@@ -1,0 +1,80 @@
+{% extends layout %}
+
+
+{% block body %}
+        <section id="content">
+          <section class="vbox">
+            <section class="scrollable wrapper-lg">
+            <h3 class="font-thin m-t-xs">{{ categoriesbyid.name }}</h3>
+              <div class="row">
+
+                              <div class="col-sm-12">
+                                <div class="blog-post">
+                                  <div class="post-item">
+                                    <div class="caption wrapper-lg">
+                                      <h2 class="post-title"><a href="{{ app.index }}article/{{ articles.id }}">{{ articles.title|title }}</a></h2>
+                                      <div class="post-sum">
+                                        <p>
+                                          {{ articles.content|truncate(250, true, '...')|raw }}
+                                        </p>
+                                      </div>
+                                      <div class="line line-lg"></div>
+                                      <div class="text-muted">
+                                        <i class="fa fa-user icon-muted"></i> by <a href="{{ app.index }}profil/{{ articles.iduser }}" class="m-r-sm">{{ articles.pseudo }}</a>
+                                        <i class="fa fa-folder-open icon-muted"></i> <a href="{{ app.index }}categorie/{{ articles.idcategory }}" class="m-r-sm">{{ articles.namecategory }}</a>
+                                        <i class="fa fa-clock-o icon-muted"></i> {{ articles.date }}
+                                        <a href="{{ app.index }}article/{{ articles.id }}#comments" class="m-l-sm"><i class="fa fa-comment-o icon-muted"></i> {% if articles.nbcomments %}{{ articles.nbcomments }} commentaire{% if articles.nbcomments > 1 %}s{% endif %} {% else %} 0 commentaire{% endif %}</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                  <h4 class="m-t-lg m-b">{% if articles.nbcomments %}{{ articles.nbcomments }} commentaire{% if articles.nbcomments > 1 %}s{% endif %} {% else %} 0 commentaire{% endif %}</h4>
+
+                  <section class="comment-list block" id="comments">
+
+                    {% for commentaire in commentaires %}
+
+                    <article id="comment-id-1" class="comment-item">
+                      <a class="pull-left thumb-sm">
+                        <img src="{{ app.asset_path }}/images/a0.png" class="img-circle">
+                      </a>
+                      <section class="comment-body m-b">
+                        <header>
+                          <a href="#"><strong>{{ commentaire.pseudo }}</strong></a>
+                          <span class="text-muted text-xs block m-t-xs">
+                            {{ commentaire.date }}
+                          </span>
+                        </header>
+                        <div class="m-t-sm">{{ commentaire.message }}</div>
+                      </section>
+                    </article>
+
+                    {% endfor %}
+
+                  </section>
+
+
+                  <h4 class="m-t-lg m-b">Laisser un commentaire</h4>
+                  <FORM name="form" method="post">
+                              <div class="form-group">
+                              <label>Commentaire</label>
+                                {{ form_errors(form.commentaire) }}
+                                {{ form_widget(form.commentaire, {'attr': {'class': 'form-control'}}) }}
+                              </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-success" value="Envoyer votre commentaire">
+                      {{ form_end(form) }}
+                    </div>
+                  </form>
+                </div>
+ 
+
+            </div>
+
+          </section>
+        </section>
+      </section>
+
+{% endblock %}

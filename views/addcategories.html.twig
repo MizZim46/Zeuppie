@@ -2,6 +2,8 @@
 
 
 {% block body %}
+
+{% if infousers.role == "1" %}
         <section id="content">
           <section class="vbox">
             <section class="scrollable wrapper-lg">
@@ -23,5 +25,20 @@
           </section>
         </section>
       </section>
+
+      {% else %}
+        <section id="content">
+          <section class="vbox">
+            <section class="scrollable wrapper-lg">
+            <h1 class="h text-white animated fadeInDownBig">Oops</h1>
+              <div class="row">
+                Tu n'as pas accès à cette page, pour retourner à l'accueil <a href="{{ app.index }}">clique ici</a>
+              </div>
+              </section>
+            </section>
+          </section>
+
+      {% endif %}
+
 
 {% endblock %}

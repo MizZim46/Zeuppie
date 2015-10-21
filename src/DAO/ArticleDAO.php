@@ -36,6 +36,36 @@ class ArticleDAO extends DAO
     }
 
     /**
+     * Return a list of all articles, sorted by date (most recent first).
+     *
+     * @return array A list of all articles.
+     */
+    public function findAllBySearch($search) {
+        $sql = "SELECT *, COUNT(co.id_commentaires) AS nbCommentaires
+            FROM articles AS a
+            INNER JOIN utilisateurs AS u 
+            ON a.id_utilisateurs = u.id_utilisateurs
+            LEFT JOIN categories AS c
+            ON a.id_categories = c.id_categories
+            LEFT JOIN commentaires AS co 
+            ON a.id_articles = co.id_articles_commentaires
+            WHERE a.status = 1
+            AND a.titre LIKE '%".$search."%'
+            OR a.contenu LIKE '%".$search."%'
+            GROUP BY a.id_articles
+            ORDER BY a.id_articles DESC";
+        $result = $this->getDb()->fetchAll($sql);
+        
+        // Convert query result to an array of domain objects
+        $articles = array();
+        foreach ($result as $row) {
+            $articlesId = $row['id_articles'];
+            $articles[$articlesId] = $this->buildDomainObject($row);
+        }
+        return $articles;
+    }
+
+    /**
      * Return a list of all articles by category, sorted by date (most recent first).
      *
      * @return array A list of all articles.

@@ -123,7 +123,14 @@ session_start();
 	    $users = $app['dao.utilisateur']->loadUserByUsername($_SESSION['login']);
 	    $categories = $app['dao.categorie']->findAll();
 
-    	return $app['twig']->render('index.html.twig', array('layout' => $layout, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles));
+      if(isset($_POST['search'])) {
+        $search = htmlspecialchars($_POST['search']);
+      }
+      else {
+        $search = '';
+      }
+
+    	return $app['twig']->render('index.html.twig', array('layout' => $layout, 'search' => $search, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles));
 	}
 	else {
 		return $app->redirect('login');
@@ -370,4 +377,35 @@ session_start();
 		exit();
 	}
 
+});
+
+// Search page
+$app->match('/recherche', function () use ($app) {
+session_start();
+
+    if (isset($_SESSION['login'])) {
+    $layout = $app['twig']->loadTemplate('layout.html.twig');
+    if (isset($_POST['search'])) {
+      $articles = $app['dao.article']->findAllBySearch(htmlspecialchars($_POST['search']));
+    }
+    else {
+      $articles = $app['dao.article']->findAll();
+    }
+      $notificationsUser = $app['dao.notification']->findUser($_SESSION['login']);
+      $notifications = $app['dao.notification']->findAll($_SESSION['login']);
+      $users = $app['dao.utilisateur']->loadUserByUsername($_SESSION['login']);
+      $categories = $app['dao.categorie']->findAll();
+
+      if(isset($_POST['search'])) {
+        $search = htmlspecialchars($_POST['search']);
+      }
+      else {
+        $search = '';
+      }
+
+      return $app['twig']->render('recherche.html.twig', array('layout' => $layout, 'search' => $search, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles));
+  }
+  else {
+    return $app->redirect('login');
+  }
 });

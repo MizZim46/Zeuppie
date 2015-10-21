@@ -76,10 +76,9 @@
                           {% for comments in commentaire %}
 
                             <li class="list-group-item">
-                              <a href="{{ app.index }}categories/{{ comments.idcategory }}/articles/{{ comments.id }}" class="clear">
-                                <small class="pull-right">{{ comments.Date }}</small>
-                                <strong class="block">{{ comments.title }}</strong>
-                                <small>{{ comments.Message|truncate(40, true, '...')|raw }}</small>
+                              <a href="{{ app.index }}articles/{{ comments.idarticle }}" class="clear">
+                                <small class="pull-right">{{ comments.date }}</small>
+                                <small>{{ comments.message|truncate(40, true, '...')|raw }}</small>
                               </a>
                             </li>
 

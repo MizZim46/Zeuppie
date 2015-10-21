@@ -19,6 +19,13 @@ class Commentaire
     private $article;
 
     /**
+     * Comment id article.
+     *
+     * @var integer
+     */
+    private $idarticle;
+
+    /**
      * Comment id user.
      *
      * @var integer
@@ -75,6 +82,14 @@ class Commentaire
 
     public function setMessage($message) {
         $this->message = $message;
+    }
+
+     public function getIdArticle() {
+        return $this->idarticle;
+    }
+
+    public function setIdArticle($idarticle) {
+        $this->idarticle = $idarticle;
     }
 
     public function getArticle() {

@@ -32,8 +32,7 @@ class CommentaireDAO extends DAO
             FROM commentaires AS c
             INNER JOIN utilisateurs AS u 
             ON c.id_utilisateurs_commentaires = u.id_utilisateurs
-            WHERE c.active_commentaires = 1
-            AND c.id_articles_commentaires = ?";
+            WHERE c.id_articles_commentaires = ?";
         $result = $this->getDb()->fetchAll($sql, array($articleId));
 
         // Convert query result to an array of domain objects
@@ -61,8 +60,7 @@ class CommentaireDAO extends DAO
             FROM utilisateurs AS u 
             INNER JOIN commentaires AS c
             ON u.id_utilisateurs = c.id_utilisateurs_commentaires
-            WHERE c.active_commentaires = 1
-            AND u.login = ?";
+            WHERE u.login = ?";
         $result = $this->getDb()->fetchAll($sql, array($id));
 
         // Convert query result to an array of domain objects
@@ -70,6 +68,9 @@ class CommentaireDAO extends DAO
         foreach ($result as $row) {
             $comId = $row['id_commentaires'];
             $comment = $this->buildDomainObject($row);
+            $article = $this->articleDAO->find($row['id_articles_commentaires']);
+            $comment->setArticle($article);
+            $comments[$comId] = $comment;
         }
         return $comments;
     }
@@ -95,6 +96,9 @@ class CommentaireDAO extends DAO
         foreach ($result as $row) {
             $comId = $row['id_commentaires'];
             $comment = $this->buildDomainObject($row);
+            $article = $this->articleDAO->find($row['id_articles_commentaires']);
+            $comment->setArticle($article);
+            $comments[$comId] = $comment;
         }
         return $comments;
     }
@@ -111,6 +115,7 @@ class CommentaireDAO extends DAO
         $comment->setId($row['id_commentaires']);
         $comment->setAuthor($row['id_utilisateurs_commentaires']);
         $comment->setMessage($row['message_commentaires']);
+        $comment->setIdArticle($row['id_articles_commentaires']);
         $comment->setDate($row['date_commentaires']);
         $comment->setStatut($row['active_commentaires']);
         $comment->setPseudo($row['pseudo']);

@@ -104,8 +104,8 @@ class ArticleDAO extends DAO
         $article->setIdCategory($row['id_categories']);
         $article->setTitle($row['titre']);
         $article->setContent($row['contenu']);
-        $article->setStatut('1');
-        $article->setDate(date('Y-m-d H:i:s'));
+        $article->setStatut($row['status']);
+        $article->setDate($row['date_articles']);
         $article->setPseudo($row['pseudo']);
         $article->setNameCategory($row['nom_categories']);
         $article->setNbComments($row['nbCommentaires']);

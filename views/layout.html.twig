@@ -159,6 +159,7 @@
                     <li class="hidden-nav-xs padder m-t m-b-sm text-xs text-muted">
                       Interface
                     </li>
+                  {% if infousers.role == "1" %}
                     <li>
                       <a href="{{ app.index }}ajouter/articles">
                         <i class="icon-plus"></i>
@@ -171,6 +172,15 @@
                         <span class="font-bold">Créer une catégorie</span>
                       </a>
                     </li>
+                  {% endif %}
+                  {% if infousers.idAdmin == true %}
+                    <li>
+                      <a href="{{ app.index }}administration">
+                        <i class="icon-plus"></i>
+                        <span class="font-bold">Administration</span>
+                      </a>
+                    </li>
+                  {% endif %}
                   </ul>
                 </nav>
                 <!-- / nav -->
@@ -191,5 +201,7 @@
   <!-- Bootstrap -->
   <script src="{{ app.asset_path }}/js/bootstrap.js"></script>
   <!-- App -->
+  <script src="{{ app.asset_path }}/js/app.js"></script>  
+  <script src="{{ app.asset_path }}/js/slimscroll/jquery.slimscroll.min.js"></script>
   </body>
 </html>

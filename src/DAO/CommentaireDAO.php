@@ -48,6 +48,58 @@ class CommentaireDAO extends DAO
         return $comments;
     }
 
+
+    /**
+     * Returns a user matching the supplied id.
+     *
+     * @param integer $id The user id.
+     *
+     * @return \Pipress\Domain\Commentaire|throws an exception if no matching user is found
+     */
+    public function findAllByUser($id) {
+        $sql = "SELECT * 
+            FROM utilisateurs AS u 
+            INNER JOIN commentaires AS c
+            ON u.id_utilisateurs = c.id_utilisateurs_commentaires
+            WHERE c.active_commentaires = 1
+            AND u.login = ?";
+        $result = $this->getDb()->fetchAll($sql, array($id));
+
+        // Convert query result to an array of domain objects
+        $comments = array();
+        foreach ($result as $row) {
+            $comId = $row['id_commentaires'];
+            $comment = $this->buildDomainObject($row);
+        }
+        return $comments;
+    }
+
+   /**
+     * Returns a user matching the supplied id.
+     *
+     * @param integer $id The user id.
+     *
+     * @return \Pipress\Domain\Commentaire|throws an exception if no matching user is found
+     */
+    public function findAllByUserCible($id) {
+        $sql = "SELECT * 
+            FROM utilisateurs AS u 
+            INNER JOIN commentaires AS c
+            ON u.id_utilisateurs = c.id_utilisateurs_commentaires
+            WHERE c.active_commentaires = 1
+            AND u.id_utilisateurs = ?";
+        $result = $this->getDb()->fetchAll($sql, array($id));
+
+        // Convert query result to an array of domain objects
+        $comments = array();
+        foreach ($result as $row) {
+            $comId = $row['id_commentaires'];
+            $comment = $this->buildDomainObject($row);
+        }
+        return $comments;
+    }
+
+
     /**
      * Creates an Commentaire object based on a DB row.
      *

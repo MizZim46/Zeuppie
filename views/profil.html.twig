@@ -19,19 +19,12 @@
                           </a>
                           <div>
                             <div class="h3 m-t-xs m-b-xs">{{ infousers.pseudo }}</div>
+                            <div class="h4 m-t-xs m-b-xs">{{ infousers.NameRoles }}</div>
                             <small class="text-muted"><i class="fa fa-map-marker"></i> {% if infousers.pays %}{{ infousers.pays }}{% else %}NC{% endif %}</small>
                           </div>                
                         </div>
  
                         <div class="btn-group btn-group-justified m-b">
-                          <a class="btn btn-success btn-rounded" data-toggle="button">
-                            <span class="text">
-                              <i class="fa fa-eye"></i> Suivre
-                            </span>
-                            <span class="text-active">
-                              <i class="fa fa-eye"></i> Suivi
-                            </span>
-                          </a>
                           <a class="btn btn-dark btn-rounded">
                             <i class="fa fa-comment-o"></i> Message
                           </a>
@@ -57,9 +50,12 @@
                   <section class="vbox">
                     <header class="header bg-light lt">
                       <ul class="nav nav-tabs nav-white">
-                        <li class="active"><a href="#activity" data-toggle="tab">Activité</a></li>
+                        <li class="active"><a href="#activity" data-toggle="tab">Activités</a></li>
                       </ul>
                     </header>
+
+
+
                     <section class="scrollable">
                       <div class="tab-content">
                         <div class="tab-pane active" id="activity">
@@ -68,10 +64,7 @@
                           {% for activity in articles %}
 
                             <li class="list-group-item">
-                              <a href="#" class="thumb-sm pull-left m-r-sm">
-                                <img src="{{ app.asset_path }}/images/a0.png" class="img-circle">
-                              </a>
-                              <a href="{{ app.index }}categories/{{ activity.idcategory }}/articles/{{ activity.id }}" class="clear">
+                              <a href="{{ app.index }}article/{{ activity.id }}" class="clear">
                                 <small class="pull-right">{{ activity.date }}</small>
                                 <strong class="block">{{ activity.title }}</strong>
                                 <small>{{ activity.content|truncate(40, true, '...')|raw }}</small>
@@ -80,12 +73,24 @@
 
                             {% endfor %}
 
+                          {% for comments in commentaire %}
+
+                            <li class="list-group-item">
+                              <a href="{{ app.index }}categories/{{ comments.idcategory }}/articles/{{ comments.id }}" class="clear">
+                                <small class="pull-right">{{ comments.Date }}</small>
+                                <strong class="block">{{ comments.title }}</strong>
+                                <small>{{ comments.Message|truncate(40, true, '...')|raw }}</small>
+                              </a>
+                            </li>
+
+                            {% endfor %}
+
 
                           </ul>
                         </div>
-
                       </div>
                     </section>
+
                   </section>
                 </aside>
               </section>

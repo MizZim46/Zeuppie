@@ -22,6 +22,10 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
             FROM utilisateurs AS u 
             LEFT JOIN profil_utilisateurs AS pu
             ON u.id_utilisateurs = pu.id_utilisateurs
+            LEFT JOIN  administrateurs AS a 
+            ON u.id_utilisateurs = a.id_utilisateurs
+            LEFT JOIN roles AS r 
+            ON u.role = r.id_roles
             WHERE u.id_utilisateurs = ?";
         $row = $this->getDb()->fetchAssoc($sql, array($id));
 
@@ -34,10 +38,14 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
      */
     public function loadUserByUsername($username)
     {
-        $sql = "SELECT * 
+        $sql = "SELECT *, a.id_administrateurs AS idAdmin 
             FROM utilisateurs AS u 
             LEFT JOIN profil_utilisateurs AS pu
             ON u.id_utilisateurs = pu.id_utilisateurs
+            LEFT JOIN  administrateurs AS a 
+            ON u.id_utilisateurs = a.id_utilisateurs
+            LEFT JOIN roles AS r 
+            ON u.role = r.id_roles
             WHERE u.login = ?";
         $row = $this->getDb()->fetchAssoc($sql, array($username));
 
@@ -56,6 +64,10 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
             FROM utilisateurs AS u 
             LEFT JOIN profil_utilisateurs AS pu
             ON u.id_utilisateurs = pu.id_utilisateurs
+            LEFT JOIN  administrateurs AS a 
+            ON u.id_utilisateurs = a.id_utilisateurs
+            LEFT JOIN roles AS r 
+            ON u.role = r.id_roles
             WHERE u.login = ? OR u.pseudo = ?
             AND u.password = '".crypt(htmlspecialchars($password), '$2y$08$'.__SALTCRYPT__.'$')."'";
         $row = $this->getDb()->fetchAssoc($sql, array($username, $username));
@@ -75,6 +87,10 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
             FROM utilisateurs AS u 
             LEFT JOIN profil_utilisateurs AS pu
             ON u.id_utilisateurs = pu.id_utilisateurs
+            LEFT JOIN  administrateurs AS a 
+            ON u.id_utilisateurs = a.id_utilisateurs
+            LEFT JOIN roles AS r 
+            ON u.role = r.id_roles
             WHERE u.login = ?";
         $row = $this->getDb()->fetchAssoc($sql, array($username));
 
@@ -129,6 +145,8 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
         $user->setTwitter($row['twitter']);
         $user->setFacebook($row['facebook']);
         $user->setGoogle($row['google']);
+        $user->setNameRoles($row['nom_roles']);
+        $user->setidAdmin($row['id_administrateurs']);
 
         return $user;
     }

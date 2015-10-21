@@ -320,10 +320,11 @@ if (isset($_SESSION['login'])) {
 	    $notifications = $app['dao.notification']->findAll($_SESSION['login']);
 	    $users = $app['dao.utilisateur']->loadUserByUsername($_SESSION['login']);
 	    $categories = $app['dao.categorie']->findAll();
+      $commentaire = $app['dao.commentaire']->findAllByUser($_SESSION['login']);
 
 	    $NoProfil = true;
 
-    return $app['twig']->render('profil.html.twig', array('layout' => $layout, 'NoProfil' => $NoProfil, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles));
+    return $app['twig']->render('profil.html.twig', array('layout' => $layout, 'NoProfil' => $NoProfil, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles, 'commentaire' => $commentaire));
 }
 else {
 	return $app->redirect('inscription');
@@ -352,6 +353,7 @@ session_start();
 	    $notifications = $app['dao.notification']->findAll($_SESSION['login']);
 	    $users = $app['dao.utilisateur']->findAll($idProfil);
 	    $categories = $app['dao.categorie']->findAll();
+      $commentaire = $app['dao.commentaire']->findAllByUserCible($idProfil);
 
 
 	if ($users) {
@@ -361,7 +363,7 @@ session_start();
 		$NoProfil = false;
 	}
 
-	    return $app['twig']->render('profil.html.twig', array('layout' => $layout, 'NoProfil' => $NoProfil, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles));
+	    return $app['twig']->render('profil.html.twig', array('layout' => $layout, 'NoProfil' => $NoProfil, 'users' => $_SESSION['login'], 'notifications' => $notifications, 'notif' => $notificationsUser, 'infousers' => $users, 'categories' => $categories, 'articles' => $articles, 'commentaire' => $commentaire));
 	}
 	else {
 		return $app->redirect('inscription');

@@ -125,6 +125,19 @@ class Utilisateur implements UserInterface
      */
     private $google;
 
+    /**
+     * User nom_roles.
+     *
+     * @var string
+     */
+    private $nom_roles;
+
+    /**
+     * User id_administrateurs.
+     *
+     * @var integer
+     */
+    private $id_administrateurs;
 
     public function getId() {
         return $this->id;
@@ -272,5 +285,21 @@ class Utilisateur implements UserInterface
 
     public function setGoogle($google) {
         $this->google = $google;
+    }
+
+    public function getNameRoles() {
+        return $this->nom_roles;
+    }
+
+    public function setNameRoles($nom_roles) {
+        $this->nom_roles = $nom_roles;
+    }
+
+    public function getIdAdmin() {
+        return $this->id_administrateurs;
+    }
+
+    public function setIdAdmin($id_administrateurs) {
+        $this->id_administrateurs = $id_administrateurs;
     }
 }

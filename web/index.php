@@ -4,7 +4,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
 
-const __URL__ = "http://localhost:9080/Pipress/";
+const __URL__ = "http://localhost:9080/Zeuppie/";
 
 define("__SALTCRYPT__", "PezOEdkEx781Zopedl309dSK8sxn89eZ");
 

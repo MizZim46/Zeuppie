@@ -20,4 +20,8 @@ $app['index'] = $app->share(function () {
     return __URL__.'web/index.php/';
 });
 
+$app['name'] = $app->share(function () {
+    return 'Zeuppie';
+});
+
 $app->run();

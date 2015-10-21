@@ -2,8 +2,8 @@
 <html lang="fr" class="app">
 <head>  
   <meta charset="utf-8" />
-  <title>Zeuppie | App</title>
-  <meta name="description" content="Zeuppie - Votre bibliothèque du savoir" />
+  <title>{{ app.name }} | App</title>
+  <meta name="description" content="{{ app.name }} - Votre bibliothèque du savoir" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="{{ app.asset_path }}/js/jPlayer/jplayer.flat.css" type="text/css" />
   <link rel="stylesheet" href="{{ app.asset_path }}/css/bootstrap.css" type="text/css" />
@@ -29,7 +29,7 @@
         <a href="index.html" class="navbar-brand text-lt">
           <i class="icon-book-open"></i>
           <img src="images/logo.png" alt="." class="hide">
-          <span class="hidden-nav-xs m-l-sm">Zeuppie</span>
+          <span class="hidden-nav-xs m-l-sm">{{ app.name }}</span>
         </a>
         <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
           <i class="icon-settings"></i>

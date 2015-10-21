@@ -51,8 +51,6 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
 
         if ($row)
             return $this->buildDomainObject($row);
-        else
-            throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
     }
 
     /**
@@ -74,8 +72,6 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
 
         if ($row)
             return $this->buildDomainObject($row);
-        else
-            throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
     }
 
     /**
@@ -96,8 +92,6 @@ class UtilisateurDAO extends DAO implements UserProviderInterface
 
         if ($row)
             return $this->buildDomainObject($row);
-        else
-            throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
     }
 
     /**
